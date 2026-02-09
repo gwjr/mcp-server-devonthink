@@ -17,9 +17,10 @@ const isRunning = async (): Promise<{ isRunning: boolean }> => {
 	return await executeJxa<{ isRunning: boolean }>(script);
 };
 
-export const isRunningTool: Tool = {
+export const isRunningTool = {
 	name: "is_running",
 	description: "Check if the DEVONthink application is currently running.\n\nExample:\n{}",
+	annotations: { title: "Check Running", readOnlyHint: true, openWorldHint: false },
 	inputSchema: zodToJsonSchema(IsRunningSchema) as ToolInput,
 	run: isRunning,
 };

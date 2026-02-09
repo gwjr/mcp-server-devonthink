@@ -194,8 +194,9 @@ const replicateRecord = async (input: ReplicateRecordInput): Promise<ReplicateRe
 	return await executeJxa<ReplicateRecordResult>(script);
 };
 
-export const replicateRecordTool: Tool = {
+export const replicateRecordTool = {
 	name: "replicate_record",
+	annotations: { title: "Replicate Record", destructiveHint: false, openWorldHint: false },
 	description:
 		'Replicate a record within the same database to a destination group.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "destinationGroupUuid": "FEDC-BA09-8765-4321"\n}',
 	inputSchema: zodToJsonSchema(ReplicateRecordSchema) as ToolInput,

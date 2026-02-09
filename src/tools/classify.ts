@@ -145,8 +145,9 @@ const classify = async (input: ClassifyInput): Promise<ClassifyResult> => {
 	return await executeJxa<ClassifyResult>(script);
 };
 
-export const classifyTool: Tool = {
+export const classifyTool = {
 	name: "classify",
+	annotations: { title: "Classify Record", readOnlyHint: true, openWorldHint: false },
 	description:
 		'Get classification proposals for a DEVONthink record.\n\nExample:\n{\n  "recordUuid": "1234-5678-90AB-CDEF"\n}',
 	inputSchema: zodToJsonSchema(ClassifySchema) as ToolInput,

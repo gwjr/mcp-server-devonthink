@@ -7,7 +7,6 @@ import {
 	ListPromptsRequestSchema,
 	ListResourceTemplatesRequestSchema,
 	McpError,
-	Tool,
 } from "@modelcontextprotocol/sdk/types.js";
 import { isRunningTool } from "./tools/isRunning.js";
 import { createRecordTool } from "./tools/createRecord.js";
@@ -53,7 +52,8 @@ export const createServer = async () => {
 		},
 	);
 
-	const tools: Tool[] = [
+	// typed as any[] because Tool type from SDK 1.0.1 doesn't include annotations
+	const tools: any[] = [
 		isRunningTool,
 		createRecordTool,
 		deleteRecordTool,

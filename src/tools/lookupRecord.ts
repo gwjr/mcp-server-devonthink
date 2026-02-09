@@ -161,8 +161,9 @@ const lookupRecord = async (input: LookupRecordInput): Promise<LookupResult> => 
 	return await executeJxa<LookupResult>(script);
 };
 
-export const lookupRecordTool: Tool = {
+export const lookupRecordTool = {
 	name: "lookup_record",
+	annotations: { title: "Lookup Record", readOnlyHint: true, openWorldHint: false },
 	description:
 		'Look up records in DEVONthink by a specific attribute.\n\nExample:\n{\n  "lookupType": "filename",\n  "value": "report.pdf"\n}',
 	inputSchema: zodToJsonSchema(LookupRecordSchema) as ToolInput,

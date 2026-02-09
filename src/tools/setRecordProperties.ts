@@ -193,8 +193,14 @@ const setRecordProperties = async (
 	return await executeJxa<SetRecordPropertiesResult>(script);
 };
 
-export const setRecordPropertiesTool: Tool = {
+export const setRecordPropertiesTool = {
 	name: "set_record_properties",
+	annotations: {
+		title: "Set Properties",
+		destructiveHint: false,
+		idempotentHint: true,
+		openWorldHint: false,
+	},
 	description:
 		'Set properties on a DEVONthink record (comment, flag, locked, exclude* flags).\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "comment": "Updated by tool",\n  "flag": true,\n  "locked": true,\n  "excludeFromChat": true\n}',
 	inputSchema: zodToJsonSchema(SetRecordPropertiesSchema) as ToolInput,

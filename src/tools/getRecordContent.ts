@@ -98,8 +98,9 @@ const getRecordContent = async (input: GetRecordContentInput): Promise<GetRecord
 	return await executeJxa<GetRecordContentResult>(script);
 };
 
-export const getRecordContentTool: Tool = {
+export const getRecordContentTool = {
 	name: "get_record_content",
+	annotations: { title: "Record Content", readOnlyHint: true, openWorldHint: false },
 	description:
 		'Gets the content of a specific record in DEVONthink.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF"\n}',
 	inputSchema: zodToJsonSchema(GetRecordContentSchema) as ToolInput,

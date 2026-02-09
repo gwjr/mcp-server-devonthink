@@ -212,8 +212,9 @@ const convertRecord = async (input: ConvertRecordInput): Promise<ConvertRecordRe
 	return await executeJxa<ConvertRecordResult>(script);
 };
 
-export const convertRecordTool: Tool = {
+export const convertRecordTool = {
 	name: "convert_record",
+	annotations: { title: "Convert Record", destructiveHint: false, openWorldHint: false },
 	description:
 		'Convert a record to a different format, creating a new record.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "format": "markdown"\n}',
 	inputSchema: zodToJsonSchema(ConvertRecordSchema) as ToolInput,

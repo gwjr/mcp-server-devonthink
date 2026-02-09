@@ -31,7 +31,7 @@ const CreateSummaryDocumentSchema = z
 export const createSummaryDocumentTool = createDevonThinkTool({
 	name: "create_summary_document",
 	description: "Create an AI-generated summary document from multiple DEVONthink documents.",
-
+	annotations: { title: "Create Summary", destructiveHint: false, openWorldHint: false },
 	inputSchema: CreateSummaryDocumentSchema,
 	buildScript: (input, helpers) => {
 		const { documentUuids, summaryType, summaryStyle, parentGroupUuid, customTitle } = input;

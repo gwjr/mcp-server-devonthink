@@ -186,8 +186,9 @@ const getRecordProperties = async (input: GetRecordPropertiesInput): Promise<Rec
 	return await executeJxa<RecordProperties>(script);
 };
 
-export const getRecordPropertiesTool: Tool = {
+export const getRecordPropertiesTool = {
 	name: "get_record_properties",
+	annotations: { title: "Record Properties", readOnlyHint: true, openWorldHint: false },
 	description:
 		'Get detailed properties and metadata for a DEVONthink record.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF"\n}',
 	inputSchema: zodToJsonSchema(GetRecordPropertiesSchema) as ToolInput,

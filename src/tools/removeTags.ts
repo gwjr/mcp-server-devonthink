@@ -96,8 +96,14 @@ const removeTags = async (input: RemoveTagsInput): Promise<RemoveTagsResult> => 
 	return await executeJxa<RemoveTagsResult>(script);
 };
 
-export const removeTagsTool: Tool = {
+export const removeTagsTool = {
 	name: "remove_tags",
+	annotations: {
+		title: "Remove Tags",
+		destructiveHint: false,
+		idempotentHint: true,
+		openWorldHint: false,
+	},
 	description:
 		'Removes tags from a specific record in DEVONthink.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "tags": ["old-tag"]\n}',
 	inputSchema: zodToJsonSchema(RemoveTagsSchema) as ToolInput,

@@ -115,8 +115,14 @@ const deleteRecord = async (
 	return await executeJxa<{ success: boolean; error?: string }>(script);
 };
 
-export const deleteRecordTool: Tool = {
+export const deleteRecordTool = {
 	name: "delete_record",
+	annotations: {
+		title: "Delete Record",
+		destructiveHint: true,
+		idempotentHint: true,
+		openWorldHint: false,
+	},
 	description:
 		'Delete a record from DEVONthink.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF"\n}',
 	inputSchema: zodToJsonSchema(DeleteRecordSchema) as ToolInput,

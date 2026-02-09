@@ -324,8 +324,9 @@ const search = async (input: SearchInput): Promise<SearchResult> => {
 	return await executeJxa<SearchResult>(script);
 };
 
-export const searchTool: Tool = {
+export const searchTool = {
 	name: "search",
+	annotations: { title: "Search Records", readOnlyHint: true, openWorldHint: false },
 	description: `Search DEVONthink records. Examples: {"query": "invoice"} or {"query": "project review", "groupPath": "/Meetings", "databaseName": "MyDB"}. Note: groupPath requires databaseName and must be database-relative (e.g., "/Meetings" not "/MyDB/Meetings").`,
 	inputSchema: zodToJsonSchema(SearchSchema) as ToolInput,
 	run: search,

@@ -164,8 +164,14 @@ const moveRecord = async (
 	}>(script);
 };
 
-export const moveRecordTool: Tool = {
+export const moveRecordTool = {
 	name: "move_record",
+	annotations: {
+		title: "Move Record",
+		destructiveHint: false,
+		idempotentHint: true,
+		openWorldHint: false,
+	},
 	description:
 		'Move a record to a different group in DEVONthink.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "destinationGroupUuid": "FEDC-BA09-8765-4321"\n}',
 	inputSchema: zodToJsonSchema(MoveRecordSchema) as ToolInput,

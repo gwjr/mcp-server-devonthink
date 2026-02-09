@@ -101,8 +101,14 @@ const updateRecordContent = async (
 	return await executeJxa<UpdateRecordContentResult>(script);
 };
 
-export const updateRecordContentTool: Tool = {
+export const updateRecordContentTool = {
 	name: "update_record_content",
+	annotations: {
+		title: "Update Content",
+		destructiveHint: false,
+		idempotentHint: true,
+		openWorldHint: false,
+	},
 	description:
 		'Updates the content of an existing record in DEVONthink.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "content": "# New Content"\n}',
 	inputSchema: zodToJsonSchema(UpdateRecordContentSchema) as ToolInput,

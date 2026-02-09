@@ -112,8 +112,9 @@ const createRecord = async (
 	}>(script);
 };
 
-export const createRecordTool: Tool = {
+export const createRecordTool = {
 	name: "create_record",
+	annotations: { title: "Create Record", destructiveHint: false, openWorldHint: false },
 	description:
 		'Create a new record in DEVONthink.\n\nExample:\n{\n  "name": "New Note",\n  "type": "markdown",\n  "content": "# Hello World"\n}',
 	inputSchema: zodToJsonSchema(CreateRecordSchema) as ToolInput,

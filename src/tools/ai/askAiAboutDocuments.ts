@@ -25,7 +25,7 @@ export const askAiAboutDocumentsTool = createDevonThinkTool({
 	name: "ask_ai_about_documents",
 	description:
 		"Ask AI questions about specific DEVONthink documents for analysis, comparison, or extraction.",
-
+	annotations: { title: "Ask AI", readOnlyHint: true, openWorldHint: false },
 	inputSchema: AskAiAboutDocumentsSchema,
 	buildScript: (input, helpers) => {
 		const { documentUuids, question, temperature, model, engine } = input;

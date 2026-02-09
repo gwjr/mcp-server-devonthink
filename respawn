@@ -1,0 +1,24 @@
+#!/bin/bash
+# Restart script for mcp-server-devonthink
+# Rebuilds first, then kills running processes only on success
+
+set -e
+
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$SCRIPT_DIR"
+
+echo "==> Installing dependencies..."
+npm install
+
+echo "==> Checking formatting..."
+npm run format:check
+
+echo "==> Building..."
+npm run build
+
+echo "==> Build successful! Killing any running mcp-server-devonthink processes..."
+pkill -f "mcp-server-devonthink" 2>/dev/null || true
+pkill -f "dist/index.js" 2>/dev/null || true
+
+echo "==> Done! Server is ready to be started by Claude Desktop or Claude Code."
+echo "    (They will start it automatically on next use)"

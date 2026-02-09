@@ -17,12 +17,24 @@ export interface DevonThinkResult {
 }
 
 /**
+ * MCP tool annotations - hints about tool behavior
+ */
+export interface ToolAnnotations {
+	title?: string;
+	readOnlyHint?: boolean;
+	destructiveHint?: boolean;
+	idempotentHint?: boolean;
+	openWorldHint?: boolean;
+}
+
+/**
  * Configuration for a DEVONthink tool
  */
 export interface DevonThinkToolConfig<TInput, TResult extends DevonThinkResult> {
 	name: string;
 	description: string;
 	inputSchema: ZodSchema<TInput>;
+	annotations?: ToolAnnotations;
 	buildScript: (input: TInput, helpers: ScriptHelpers) => string;
 }
 
@@ -47,12 +59,14 @@ export abstract class DevonThinkTool<
 	protected readonly name: string;
 	protected readonly description: string;
 	protected readonly inputSchema: ZodSchema<TInput>;
+	protected readonly annotations?: ToolAnnotations;
 	protected readonly buildScript: (input: TInput, helpers: ScriptHelpers) => string;
 
 	constructor(config: DevonThinkToolConfig<TInput, TResult>) {
 		this.name = config.name;
 		this.description = config.description;
 		this.inputSchema = config.inputSchema;
+		this.annotations = config.annotations;
 		this.buildScript = config.buildScript;
 	}
 
@@ -60,12 +74,14 @@ export abstract class DevonThinkTool<
 	 * Get the MCP tool definition
 	 */
 	public getTool(): Tool {
-		return {
+		const tool: any = {
 			name: this.name,
 			description: this.description,
 			inputSchema: zodToJsonSchema(this.inputSchema) as ToolInput,
 			run: this.execute.bind(this),
 		};
+		if (this.annotations) tool.annotations = this.annotations;
+		return tool;
 	}
 
 	/**

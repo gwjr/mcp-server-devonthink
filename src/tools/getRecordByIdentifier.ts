@@ -152,8 +152,9 @@ const getRecordByIdentifier = async (input: GetRecordByIdentifierInput): Promise
 	return await executeJxa<RecordResult>(script);
 };
 
-export const getRecordByIdentifierTool: Tool = {
+export const getRecordByIdentifierTool = {
 	name: "get_record_by_identifier",
+	annotations: { title: "Get Record", readOnlyHint: true, openWorldHint: false },
 	description:
 		'Get a DEVONthink record using its UUID or ID.\n\nExample (UUID):\n{\n  "uuid": "1234-5678-90AB-CDEF"\n}\n\nExample (ID):\n{\n  "id": 12345,\n  "databaseName": "MyDatabase"\n}',
 	inputSchema: zodToJsonSchema(GetRecordByIdentifierSchema) as ToolInput,

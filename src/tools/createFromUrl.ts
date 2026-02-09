@@ -158,8 +158,9 @@ const createFromUrl = async (input: CreateFromUrlInput): Promise<CreateFromUrlRe
 	return await executeJxa<CreateFromUrlResult>(script);
 };
 
-export const createFromUrlTool: Tool = {
+export const createFromUrlTool = {
 	name: "create_from_url",
+	annotations: { title: "Create from URL", destructiveHint: false, openWorldHint: true },
 	description:
 		'Create a record in DEVONthink from a web URL.\n\nExample:\n{\n  "url": "https://www.example.com",\n  "format": "markdown"\n}',
 	inputSchema: zodToJsonSchema(CreateFromUrlSchema) as ToolInput,

@@ -1,5 +1,17 @@
 # Copilot Instructions
 
+## Local Development Setup
+
+This is a local fork for use with Claude Desktop and Claude Code. After making changes:
+
+```bash
+./respawn
+```
+
+This script installs dependencies, checks formatting, rebuilds the project, then (only on success) kills any running server processes. Claude Desktop/Claude Code will automatically restart the server on next use.
+
+---
+
 - This project uses [Vitest](https://vitest.dev/) for testing.
 - This project uses [Biome](https://biomejs.dev/) for code formatting and linting.
 - **CRITICAL**: All changes must pass `npm run format:check` before being considered complete.

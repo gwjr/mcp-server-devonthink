@@ -88,8 +88,14 @@ const renameRecord = async (input: RenameRecordInput): Promise<RenameRecordResul
 	return await executeJxa<RenameRecordResult>(script);
 };
 
-export const renameRecordTool: Tool = {
+export const renameRecordTool = {
 	name: "rename_record",
+	annotations: {
+		title: "Rename Record",
+		destructiveHint: false,
+		idempotentHint: true,
+		openWorldHint: false,
+	},
 	description:
 		'Renames a specific record in DEVONthink.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "newName": "New Record Name"\n}',
 	inputSchema: zodToJsonSchema(RenameRecordSchema) as ToolInput,

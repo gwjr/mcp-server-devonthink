@@ -245,8 +245,9 @@ const getToolDocumentation = async (
 	}
 };
 
-export const getToolDocumentationTool: Tool = {
+export const getToolDocumentationTool = {
 	name: "get_ai_tool_documentation",
+	annotations: { title: "AI Tool Docs", readOnlyHint: true, openWorldHint: false },
 	description:
 		"Get detailed documentation for DEVONthink AI tools including examples and use cases.",
 	inputSchema: zodToJsonSchema(GetToolDocumentationSchema) as ToolInput,

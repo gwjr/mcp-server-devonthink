@@ -187,8 +187,9 @@ const duplicateRecord = async (input: DuplicateRecordInput): Promise<DuplicateRe
 	return await executeJxa<DuplicateRecordResult>(script);
 };
 
-export const duplicateRecordTool: Tool = {
+export const duplicateRecordTool = {
 	name: "duplicate_record",
+	annotations: { title: "Duplicate Record", destructiveHint: false, openWorldHint: false },
 	description:
 		'Duplicate a record to any destination group, creating an independent copy.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "destinationGroupUuid": "FEDC-BA09-8765-4321"\n}',
 	inputSchema: zodToJsonSchema(DuplicateRecordSchema) as ToolInput,

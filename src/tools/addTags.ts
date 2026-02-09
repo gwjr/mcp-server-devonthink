@@ -77,8 +77,14 @@ const addTags = async (input: AddTagsInput): Promise<AddTagsResult> => {
 	return await executeJxa<AddTagsResult>(script);
 };
 
-export const addTagsTool: Tool = {
+export const addTagsTool = {
 	name: "add_tags",
+	annotations: {
+		title: "Add Tags",
+		destructiveHint: false,
+		idempotentHint: true,
+		openWorldHint: false,
+	},
 	description:
 		'Adds tags to a DEVONthink record.\n\nExample:\n{\n  "uuid": "1234-5678-90AB-CDEF",\n  "tags": ["important", "work"]\n}',
 	inputSchema: zodToJsonSchema(AddTagsSchema) as ToolInput,

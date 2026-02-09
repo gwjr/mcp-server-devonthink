@@ -96,9 +96,10 @@ const getOpenDatabases = async (): Promise<GetOpenDatabasesResult> => {
 	return await executeJxa<GetOpenDatabasesResult>(script);
 };
 
-export const getOpenDatabasesTool: Tool = {
+export const getOpenDatabasesTool = {
 	name: "get_open_databases",
 	description: "Get a list of all currently open databases in DEVONthink.\n\nExample:\n{}",
+	annotations: { title: "List Databases", readOnlyHint: true, openWorldHint: false },
 	inputSchema: zodToJsonSchema(GetOpenDatabasesSchema) as ToolInput,
 	run: getOpenDatabases,
 };
